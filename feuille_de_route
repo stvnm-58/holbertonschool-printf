@@ -1,0 +1,24 @@
+- Lire ce qu'il y a dans la fonction
+- si arg 1 != % on stop
+- on lit l'arg 2
+    comparer arg 2 avec élément du tableau
+        si concordance => utilise la fonction associée
+
+
+*******************************************************
+
+FONCTIONS
+
+fonction c (pour char) : write (1, *pointeur_assocé, 1)
+    - 1 = stdout = sortie sur terminal = affiche dans le terminal
+    - * pointeur_associé = correspond au pointeur de l'arg cible
+    - 1 = 1 octet à partir du pointeur init précédemment
+
+fonction s (pour string / chaîne de car) : write (1, *pointeur_associé, x)
+    - 1 = stdout = sortie sur terminal = affiche dans le terminal
+    - * pointeur_associé = correspond au pointeur de l'arg cible
+    - x = x octets (nombre dépendant du nombre trouvé dans l'arg) à partir du pointeur init précédemment
+
+fonction d (pour décimal) : SOON
+
+fonction i (pour int) : SOON
