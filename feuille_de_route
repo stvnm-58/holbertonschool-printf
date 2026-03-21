@@ -1,9 +1,44 @@
-- Lire ce qu'il y a dans la fonction
-- si arg 1 != % on stop
-- on lit l'arg 2
-    comparer arg 2 avec élément du tableau
-        si concordance => utilise la fonction associée
+Initialisation
 
+    Préparer la liste d'arguments (va_start).
+    Initialiser un compteur à 0 (pour savoir combien de caractères seront affichés au final).
+
+Boucle de lecture (Caractère par caractère)
+
+    Tant qu'on n'est pas à la fin de la chaîne format :
+
+        SI le caractère actuel n'est pas un % :
+
+            Afficher le caractère directement (avec write).
+
+            Incrémenter le compteur de 1.
+
+        SINON SI le caractère actuel est un % :
+
+            Passer immédiatement au caractère suivant.
+
+            SI ce caractère suivant est aussi un % :
+
+                Afficher un seul % (gestion de l'échappement %%).
+                Incrémenter le compteur de 1.
+
+            SINON (c'est un code de format comme c, s, i, d) :
+
+                Chercher ce caractère dans tableau de structures.
+
+
+                SI une correspondance est trouvée :
+
+                    Appeler la fonction associée (qui va lire l'argument avec va_arg et l'afficher).
+                    Ajouter le nombre de caractères imprimés par cette fonction à ton compteur global.
+
+
+
+                SINON (caractère inconnu après le %) :
+                    Afficher le % et le caractère inconnu (ou gérer selon la consigne).
+
+Terminer par afficher nombre total de charactère print en return
+va_end
 
 *******************************************************
 
