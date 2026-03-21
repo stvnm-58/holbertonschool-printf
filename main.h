@@ -6,17 +6,12 @@
 #include <stdarg.h>
 
 
-/*
-*
-* Add ici la structure qui servira plus tard en comparateur
-*
-*/
+typedef struct spec
+{
+    char lettre;
+    void (*fonction)(va_list);
+}spec_t;
 
-
-/*
-*
-* Add ici les prototypes de fonctions qui seront utilisées
-*/
 
 int _printf(const char *format, ...);
 
