@@ -9,7 +9,7 @@
 typedef struct spec
 {
     char lettre;
-    void (*fonction)(va_list);
+    int (*fonction)(va_list);
 }spec_t;
 
 
