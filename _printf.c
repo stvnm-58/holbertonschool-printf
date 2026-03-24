@@ -95,7 +95,7 @@ int _printf(const char *format, ...)
 					if (tableau[j].lettre == '\0')
 					{
 						write(1,"%", 1);
-						write(1,&forma[i],1);
+						write(1,&format[i],1);
 						len = len +2;
 					}
 
