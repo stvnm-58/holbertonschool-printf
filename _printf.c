@@ -1,111 +1,122 @@
 #include "main.h"
 #include <stdarg.h>
-#include <sys/_types/_va_list.h>
-
-
 /*
-*
-* TASK 0 :
-*
-* préparer fonction c
-* préparer fonction s
-* 
-* TASK 1 :
-*
-* préparer fonction d
-* préparer fonction i
-*
-*/
-
-int print_c(va_list list)
+ *
+ * TASK 0 :
+ *
+ * préparer fonction c
+ * préparer fonction s
+ *
+ * TASK 1 :
+ *
+ * préparer fonction d
+ * préparer fonction i
+ *
+ */
+int print_c(va_list arg)
 {
-write (1, va_arg(list, int), 1);
+	char c;
+
+	c = va_arg(arg, int);
+	write(1, &c, 1);
+	return (1);
 }
-
-
-int print_s(va_list list)
+int print_s(va_list arg)
 {
-char *str = va_arg(list, char*);
-int x;
+	char *str = va_arg(arg, char *);
+	int x;
 
-if (str == NULL)
-{
-	str == "(nil)";
+	if (str == NULL)
+	{
+		str = "(nil)";
+	}
+	for (x = 0; str[x] != '\0'; x++)
+	{
+		write(1, &str[x], 1);
+	}
+	return (x);
 }
-
-for (x = 0; str[x] != '\0'; x++)
-{
-write (1, str, x);
-}
-
-}
-
-
 /********************************/
-
 int _printf(const char *format, ...)
 {
+	/*
+	 *
+	 * Tableau de fonction ici
+	 *
+	 */
+	spec_t tableau[] = {
+		{'c', print_c},
+		{'s', print_s},
+		{'\0', NULL},
+	};
+	/*moteur du programme ici*/
+	int i = 0;
+	int j;
+	int len = 0;
+	/*compteur de taille du print*/
+	va_list arg;
 
-/*
-*
-* Tableau de fonction ici
-*
-*/
-spec_t tableau[] = {
-	{'c', print_c},
-	{'s', print_s},
-	{'\0', NULL},
-};
+	va_start(arg, format);
+	while (format[i])
+	{
+		/*ci-dessous, si le defilement trouve un %*/
+		if (format[i] == '%')
+		{
+			i++;
+			{
+				/* ci-dessous, erciture du % s'il est precédé d'un %*/
+				if (format[i] == '%')
+				{
+					write(1, &format[i], 1);
+					len++;
+				}
+				else
+				{
+					j = 0; /* Remise à zéro pour parcourir le tableau 'lettre' à chaque fois*/
 
+					while (tableau[j].lettre != '\0')
+					{
+						if (format[i] == tableau[j].lettre)
+						{
+							/*appel la fonction correspondante ET ajoute le retour au compte len*/
+							len = len + tableau[j].fonction(arg);
+							break;
+						}
+						j++;
+					}
+					if (tableau[j].lettre == '\0')
+					{
+						write(1, "%", 1);
+						write(1, &format[i], 1);
+						len = len + 2;
+					}
 
-/*moteur du programme ici*/
+				}
+			}
+		}
+/*ci dessous, écrit chaque char un par un tant que c'est pas un % (auquel cas, voir code plus haut)*/
+		else
+		{
+			write(1, &format[i], 1);
+			len++;
+		}
+		i++;
+	}
+	va_end(arg);
+	return (len);
+}
+/******************************/
 
-i = 0;
-va_list arg;
-va_start(arg,format);
-while (format[i])
-{
-/*ci-dessous, si le defilement trouve un %*/
-if (format[i] == '%')
-{
-i++;
-{
-/* ci-dessous, erciture du % s'il est precédé d'un %*/
-if (format[i] == '%')
-{
-write (1, format[i], 1)
-}
-if (format[i] == 'c' || format[i] == 's')
-
-{
-/* recup de la fonction associer*/
-int print_c(va_list list)
-{
-char c;
-
-c = va_arg(list, int);     /*pioche le prochain argument en le traitant comme un int*/
-return (write(1, &c, 1));  /*écrit le caractère à l'adresse &c et on renvoie 1*/
-}
-int print_s(va_list list)
-{
-char *str = va_arg(list, char*); /*pioche l'argument en tant que pointeur (chaîne)*/
-int i = 0;                       /*Compteur local pour cette chaîne*/
-
-   
-if (str == NULL)                 /*Si la chaîne n'existe pas (pointeur NULL)*/
-str = "(null)";              /*force l'affichage de "(null)"*/
-    
-while (str[i])                   /*Tant qu'on n'est pas au caractère de fin '\0'*/
-{
-write(1, &str[i], 1);        /*affiche le caractère actuel*/
-i++;                         /*passe au suivant*/
-}
-return (i);                      /*renvoie le nombre total de lettres écrites*/
-}
-}
-}
-}
-}
-va_end(arg);
-printf("\n");
-}
+// int print_s(va_list list)
+// {
+//    char *str = va_arg(list, char *); /*pioche l'argument en tant que pointeur (chaîne)*/
+//    int i = 0;                        /*Compteur local pour cette chaîne*/
+//
+//    if (str == NULL)    /*Si la chaîne n'existe pas (pointeur NULL)*/
+//        str = "(null)"; /*force l'affichage de "(null)"*/
+//
+//    while (str[i]) /*Tant qu'on n'est pas au caractère de fin '\0'*/
+//    {
+//        write(1, &str[i], 1); /*affiche le caractère actuel*/
+//        i++;                  /*passe au suivant*/
+//   }
