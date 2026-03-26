@@ -1,44 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
 
-/*
- *
- * TASK 0 :
- *
- * préparer fonction c
- * préparer fonction s
- *
- * TASK 1 :
- *
- * préparer fonction d
- * préparer fonction i
- *
- */
-
-int print_c(va_list arg)
-{
-	char c;
-	c = va_arg(arg, int);
-	write(1, &c, 1);
-	return (1);
-}
-
-int print_s(va_list arg)
-{
-	char *str = va_arg(arg, char *);
-	int x;
-
-	if (str == NULL)
-	{
-		str = "(nil)";
-	}
-
-	for (x = 0; str[x] != '\0'; x++)
-	{
-		write(1, &str[x], 1);
-	}
-	return (x);
-}
 
 /********************************/
 
@@ -115,19 +77,3 @@ int _printf(const char *format, ...)
 
 	return (len);
 }
-
-/******************************/
-
-// int print_s(va_list list)
-// {
-//    char *str = va_arg(list, char *); /*pioche l'argument en tant que pointeur (chaîne)*/
-//    int i = 0;                        /*Compteur local pour cette chaîne*/
-//
-//    if (str == NULL)    /*Si la chaîne n'existe pas (pointeur NULL)*/
-//        str = "(null)"; /*force l'affichage de "(null)"*/
-//
-//    while (str[i]) /*Tant qu'on n'est pas au caractère de fin '\0'*/
-//    {
-//        write(1, &str[i], 1); /*affiche le caractère actuel*/
-//        i++;                  /*passe au suivant*/
-//   }
