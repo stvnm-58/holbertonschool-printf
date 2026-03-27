@@ -13,6 +13,13 @@
  * préparer fonction i
  *
  */
+
+int print_p(va_list arg)
+{
+		write(1, "%", 1);
+		return (1);
+}
+
 int print_c(va_list arg)
 {
 	char c;
@@ -35,5 +42,5 @@ int print_s(va_list arg)
 	{
 		write(1, &str[x], 1);
 	}
-	return (x);
+	return (x + 1);
 }
