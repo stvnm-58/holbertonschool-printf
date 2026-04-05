@@ -1,23 +1,48 @@
 #include "main.h"
 #include <stdarg.h>
-/*
- *
- * TASK 0 :
- *
- * préparer fonction c
- * préparer fonction s
- *
- * TASK 1 :
- *
- * préparer fonction d
- * préparer fonction i
- *
- */
+
+int print_d(va_list arg)
+{
+	int n = va_arg(arg, int);
+	int count = 0;
+	long nb;
+	char buffer[12]; // Assez large pour -2147483648\0
+	int i = 0;
+
+	nb = n;
+	
+	if (nb < 0)
+	{
+		write(1, "-", 1);
+		count++;
+		nb = -nb;
+	}
+
+	if (nb == 0)
+	{
+		write(1, "0", 1);
+		return (count + 1);
+	}
+
+	while (nb > 0)
+	{
+		buffer[i++] = (nb % 10) + '0';
+		nb = nb / 10;
+	}
+
+	while (i > 0)
+	{
+		write(1, &buffer[--i], 1);
+		count++;
+	}
+
+	return (count);
+}
 
 int print_p(va_list arg)
 {
-		write(1, "%", 1);
-		return (1);
+	write(1, "%", 1);
+	return (1);
 }
 
 int print_c(va_list arg)
