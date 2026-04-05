@@ -2,7 +2,7 @@
 
 
 int _printf(const char *format, ...){
-	spec_t tableau[] = { {'c', print_c}, {'s', print_s}, {'%', print_p}, {'d', print_d}, {'i', print_d}, {'\0', NULL},
+	spec_t tableau[] = { {'c', print_c}, {'s', print_s}, {'%', print_p}, {'\0', NULL},
 	};
 	int i = 0; 
 	int j;
@@ -24,20 +24,11 @@ int _printf(const char *format, ...){
 						}
 						j++;
 					}
-<<<<<<< HEAD
-					if (tableau[j].lettre == '\0')
-					{
-=======
 					if (tableau[j].lettre == '\0'){
->>>>>>> steven
 						write(1,"%", 1);
 						write(1,&format[i],1);
 						len = len +2;
 					}
-<<<<<<< HEAD
-
-=======
->>>>>>> steven
 				}
 			}
 		}
