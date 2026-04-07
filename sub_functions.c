@@ -1,6 +1,12 @@
 #include "main.h"
 #include <stdarg.h>
-
+/*
+*
+* Fonction servant à print les chiffre
+* également utilisé pour %i
+*
+*
+*/
 int print_d(va_list arg)
 {
 	int n = va_arg(arg, int);
@@ -39,12 +45,23 @@ int print_d(va_list arg)
 	return (count);
 }
 
+
+/*
+*
+* Fonction qui print le % après un premier %
+*
+*/
 int print_p(va_list arg)
 {
 	write(1, "%", 1);
 	return (1);
 }
 
+
+/*
+*
+* Fonction print un char via %c 
+*/
 int print_c(va_list arg)
 {
 	char c;
@@ -53,6 +70,12 @@ int print_c(va_list arg)
 	return (1);
 }
 
+
+/*
+*
+* Fonction print une chaîne de char (string)
+* via %s
+*/
 int print_s(va_list arg)
 {
 	char *str = va_arg(arg, char *);
