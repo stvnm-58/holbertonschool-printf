@@ -12,7 +12,7 @@ int print_d(va_list arg)
 	int n = va_arg(arg, int);
 	int count = 0;
 	long nb;
-	char buffer[12]; // Assez large pour -2147483648\0
+	char buffer[12]; /*Assez large pour -2147483648\0 */
 	int i = 0;
 
 	nb = n;
@@ -53,6 +53,7 @@ int print_d(va_list arg)
 */
 int print_p(va_list arg)
 {
+	(void)arg;
 	write(1, "%", 1);
 	return (1);
 }
