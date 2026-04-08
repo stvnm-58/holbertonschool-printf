@@ -91,5 +91,5 @@ int print_s(va_list arg)
 	{
 		write(1, &str[x], 1);
 	}
-	return (x + 1);
+	return (x);
 }
