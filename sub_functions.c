@@ -84,7 +84,7 @@ int print_s(va_list arg)
 
 	if (str == NULL)
 	{
-		str = "(nil)";
+		str = "(null)";
 	}
 
 	for (x = 0; str[x] != '\0'; x++)
